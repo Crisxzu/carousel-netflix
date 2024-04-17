@@ -1,0 +1,18 @@
+@import "../utils/variables";
+
+*
+{
+    color: $font-color;
+    background-color: $primary-color;
+    font-family: $roboto;
+}
+
+body
+{
+    margin: 0;
+}
+
+a
+{
+    text-decoration: none;
+}
