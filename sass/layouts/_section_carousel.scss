@@ -1,0 +1,54 @@
+section
+{
+    padding: 1.5rem;
+
+    .categorie-title
+    {
+        padding-left: 10px;
+    }
+
+    .card-carousel
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;        
+        margin: 0 auto;                
+        position: relative;        
+
+        
+
+        .prev, .next
+        {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next
+        {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev
+        {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:active, .next:active
+        {
+            background-color: white;
+            color: black;
+        }
+    }
+}

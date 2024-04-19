@@ -3,6 +3,7 @@
   color: white;
   background-color: black;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -96,6 +97,101 @@ header .navbar ul li a:hover {
     width: 100vw;
     padding: 1.2rem 1rem;
   }
+}
+
+section {
+  padding: 1.5rem;
+}
+section .categorie-title {
+  padding-left: 10px;
+}
+section .card-carousel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0 auto;
+  position: relative;
+}
+section .card-carousel .prev, section .card-carousel .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+section .card-carousel .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+section .card-carousel .prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+section .card-carousel .prev:active, section .card-carousel .next:active {
+  background-color: white;
+  color: black;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-120%);
+  }
+}
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+@keyframes slideLeftAndFade {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+@keyframes slideRightAndFade {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.card {
+  background: center/cover no-repeat url("../images/test-img.png");
+  width: 250px;
+  height: 135px;
+  opacity: 0;
+  display: none;
+  transition: opacity 1s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.active {
+  display: block;
+  opacity: 1;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
 /*# sourceMappingURL=styles.css.map */
