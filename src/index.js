@@ -2,12 +2,14 @@ import "./sass/mains.scss";
 import hamburgerImg from "./images/hamburger.svg";
 import timesImg from "./images/times.svg";
 import netflixLogoImg from "./netflix-logo.png";
+import netflixApi from "./netflixApi";
 
 let i_card_carousel = [];   
 let hamburger = document.querySelector('.hamburger');
 let navbar = document.querySelector('.navbar');
-let cardCarousels = document.querySelectorAll('.card-carousel');
+let cardCarousels;
 let hamburgerImgChanged = false;
+let movieDialog = document.querySelector('.movie-dialog');
 
 let breakpointSm = window.matchMedia('(min-width: 576px)');
 let breakpointMd = window.matchMedia('(min-width: 768px)');
@@ -116,13 +118,21 @@ function updateCardCarousel(index)
     setTimeout(() => {
         max_nb_active_cards = getMaxNbActiveCards();
     }, 1000);
+    console.log(cards);
     cards.forEach((card) => {
         card.classList.remove('active');
     });
 
     if((cards.length - (i_card_carousel[index]+1)) < max_nb_active_cards)
     {
-        i_card_carousel[index] = cards.length - max_nb_active_cards;
+        if(cards.length >= max_nb_active_cards)
+        {
+            i_card_carousel[index] = cards.length - max_nb_active_cards;
+        }
+        else
+        {
+            i_card_carousel[index] = 0;
+        }
     }
 
 
@@ -219,7 +229,14 @@ function initCardCarouselArrows(index)
 
         if((cards.length - (iCard)) < max_nb_active_cards)
         {
-            iCard = cards.length - max_nb_active_cards;
+            if(cards.length >= max_nb_active_cards)
+            {
+                iCard = cards.length - max_nb_active_cards;
+            }
+            else
+            {
+                iCard = 0;
+            }
             canPlayAnimation = false;
         }
         
@@ -281,10 +298,112 @@ function initNetflixLogo()
     netflixLogo.src = netflixLogoImg;
 }
 
+async function initMoviesSection()
+{
+    let moviesSections = document.querySelectorAll('section');
+    for(let i = 0; i < moviesSections.length; i++)
+    {
+        let moviesSection = moviesSections[i];
+        let movies = [];
+        let sectionTitle;
+        if(moviesSection.classList.contains('best-movies'))
+        {
+            movies = await netflixApi.getBestMovies();
+            console.log(movies);
+            sectionTitle = 'Best Movies';            
+        }
+        else
+        {
+            movies = await netflixApi.getMoviesByGenre(moviesSection.classList[0]);
+            sectionTitle = moviesSection.classList[0];
+        }
+        if(movies.length > 0)
+        {
+            let h1 = document.createElement('h1');
+            h1.classList.add('category-title');
+            h1.innerText = sectionTitle;
+            moviesSection.appendChild(h1);
+
+            let cardCarousel = document.createElement('div');
+            cardCarousel.classList.add('card-carousel');
+
+            movies.forEach(movie => {
+                let card = document.createElement('div');
+                card.classList.add('card');
+                card.id = movie.id;
+                card.style.backgroundImage = `url(${movie.imageUrl})`;
+                card.onclick = onClickCard;
+                cardCarousel.appendChild(card);   
+            });
+            let prev = document.createElement('a');
+            prev.classList.add('prev');
+            prev.textContent = "<";
+            cardCarousel.appendChild(prev);
+
+
+            let next = document.createElement('a');
+            next.classList.add('next');
+            next.textContent = ">";
+            cardCarousel.appendChild(next);
+            moviesSection.appendChild(cardCarousel);
+        }
+    } 
+}
+
+async function onClickCard(e)
+{
+    let card = e.target;
+    let id = card.id;
+    let movie = await netflixApi.getMovieById(id);
+    console.log(movie);
+    if(movie)
+    {
+        let img = movieDialog.querySelector('img');
+        img.src = movie.imageUrl;
+
+        let title = movieDialog.querySelector('.title');
+        title.innerText = movie.title;
+
+        let year = movieDialog.querySelector('.year');
+        year.innerText = "Year: " + movie.year;
+
+        let imdbScore = movieDialog.querySelector('.imdb-score');
+        imdbScore.innerText = "ImDb Score: " + movie.imdbScore;
+
+        let votes = movieDialog.querySelector('.votes');
+        votes.innerText = "Votes: " + movie.votes;
+
+        let directors = movieDialog.querySelector('.directors');
+        directors.innerText = "Directed by: " + movie.directors.join(', ');
+
+        let writers = movieDialog.querySelector('.writers');
+        writers.innerText = "Written by: " + movie.writers.join(', ');
+
+        let actors = movieDialog.querySelector('.actors');
+        actors.innerText = "Actors: " + movie.actors.join(', ');
+
+        let genres = movieDialog.querySelector('.genres');
+        genres.innerText = "Genres: " + movie.genres.join(', ');
+
+        let closeButton = movieDialog.querySelector('.close');
+        closeButton.onclick = function() {
+            movieDialog.close();
+        };
+
+        movieDialog.showModal();
+    }
+    console.log(id);
+}
+
+
 initNetflixLogo();
 initHamburger();
+await initMoviesSection();
+cardCarousels = document.querySelectorAll('.card-carousel');
+console.log(cardCarousels);
 initIndexOfCardCarousels();
-initCardCarousels();    
+initCardCarousels();
+console.log("update page");    
 updatePage();
 
 let resizeObserver = new ResizeObserver(updatePage);

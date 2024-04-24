@@ -1,0 +1,30 @@
+.movie-dialog
+{
+    position: relative;
+
+    .movie
+    {
+        display: flex;
+
+        img
+        {
+            width: 200px;
+            height: 300px;
+            margin-right: 1rem;
+        }
+    }
+
+    .close
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 0.2rem;
+        margin-right: 0.2rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        color: $font-color;
+        font-size: 1rem;
+        background-color: $primary-color;
+    }
+}
