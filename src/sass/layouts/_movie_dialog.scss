@@ -27,4 +27,16 @@
         font-size: 1rem;
         background-color: $primary-color;
     }
+    @media only screen and (max-width: $breakpoint-md)
+    {
+        .movie
+        {
+            flex-direction: column;
+
+            img
+            {                
+                margin-right: 0;
+            }
+        }
+    }
 }

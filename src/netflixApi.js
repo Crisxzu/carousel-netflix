@@ -29,6 +29,13 @@ class Movie
     }
 }
 
+async function isImageAvailable(imageUrl) 
+{
+    let response = await fetch(imageUrl);
+    console.log(response.status);
+    return response.ok;
+}
+
 async function getMoviesByGenre(genre, limit = 10)
 {   
     let movies = [];
@@ -41,10 +48,10 @@ async function getMoviesByGenre(genre, limit = 10)
             let json = await response.json();
             let results = json["results"];
 
-            results.forEach(result => {
+            results.forEach(async result => {
                 const movie = new Movie(
                     result["id"],
-                    result["imdbUrl"], 
+                    result["imdb_url"], 
                     result["title"],
                     result["year"],
                     result["imdb_score"],
@@ -54,8 +61,15 @@ async function getMoviesByGenre(genre, limit = 10)
                     result["writers"],
                     result["actors"],
                     result["genres"]);
-                movies.push(movie);
-                i++;
+                    isImageAvailable(movie.imageUrl)
+                    .then(isAvailable => {
+                        if (isAvailable) {
+                            movies.push(movie);
+                            i++;
+                        } else {
+                            console.log('Image is not available');
+                        }
+                    });
             });
             if(json["next"])
             {
@@ -88,10 +102,11 @@ async function getBestMovies(limit = 10)
             let json = await response.json();
             let results = json["results"];
 
-            results.forEach(result => {
+            results.forEach(async result => {
+                console.log(result);
                 const movie = new Movie(
                     result["id"],
-                    result["imdbUrl"], 
+                    result["imdb_url"], 
                     result["title"],
                     result["year"],
                     result["imdb_score"],
@@ -101,8 +116,12 @@ async function getBestMovies(limit = 10)
                     result["writers"],
                     result["actors"],
                     result["genres"]);
-                movies.push(movie);
-                i++;
+                    let isAvailable = await isImageAvailable(movie.imageUrl);
+                    if(isAvailable)
+                    {
+                        movies.push(movie);
+                        i++;
+                    } 
             });
             if(json["next"])
             {
@@ -131,7 +150,7 @@ async function getMovieById(id)
         let json = await response.json();
         const movie = new Movie(
             json["id"],
-            json["imdbUrl"], 
+            json["imdb_url"], 
             json["title"],
             json["year"],
             json["imdb_score"],
@@ -140,8 +159,13 @@ async function getMovieById(id)
             json["directors"],
             json["writers"],
             json["actors"],
-            json["genres"]);
-        return movie;
+            json["genres"]);         
+        let isAvailable = await isImageAvailable(movie.imageUrl);
+        if(isAvailable)
+        {
+            return movie;
+        }
+        return null;
     }
     else
     {
