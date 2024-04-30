@@ -1,3 +1,4 @@
+// Breakpoints for responsive design
 let breakpointSm = window.matchMedia('(min-width: 576px)');
 let breakpointMd = window.matchMedia('(min-width: 768px)');
 let breakpointLg = window.matchMedia('(min-width: 992px)');
@@ -5,6 +6,10 @@ let breakpointXl = window.matchMedia('(min-width: 1200px)');
 let breakpointXxl = window.matchMedia('(min-width: 1400px)');
 let breakpointXxxl = window.matchMedia('(min-width: 1600px)');
 
+/** Get the maximum number of cards to be displayed according to the user's screen size  
+ * @public
+ * @returns {number} - Maximum number of cards to be displayed
+ */
 function getMaxNbActiveCards()
 {
     let max_nb_active_cards = 0;

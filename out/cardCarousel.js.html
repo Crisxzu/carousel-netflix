@@ -1,4 +1,32 @@
-import utils from "./utils";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: cardCarousel.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: cardCarousel.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import utils from "./utils";
 
 const Direction = {
     "LEFT": 0,
@@ -12,7 +40,7 @@ class CardCarousels
 
     /** Constructs logic behind card carousels (Carousel moves on click on arrows to show more cards)
      * @constructor
-     * @param {NodeListOf<Element>} cardCarousels - Card carousels
+     * @param {NodeListOf&lt;Element>} cardCarousels - Card carousels
     */
     constructor(cardCarousels)
     {
@@ -37,7 +65,7 @@ class CardCarousels
     */
     initFirstVisibleCardOfCarousels()
     {
-        for (let index = 0; index < this.cardCarousels.length; index++) 
+        for (let index = 0; index &lt; this.cardCarousels.length; index++) 
         {       
             this.firstVisibleCardIndexes.push(0);
         }
@@ -49,7 +77,7 @@ class CardCarousels
     */
     initCarouselsDirectionArrows()
     {        
-        for (let index = 0; index < this.cardCarousels.length; index++) 
+        for (let index = 0; index &lt; this.cardCarousels.length; index++) 
         {
             this.initCarouselDirectionArrows(index);
         }
@@ -71,7 +99,7 @@ class CardCarousels
      * @private
      * @method
      * @param {number} carouselIndex - Index of carousel
-     * @returns {(NodeListOf<Element>|null)} - Cards of a carousel if carousel exists, null otherwise
+     * @returns {(NodeListOf&lt;Element>|null)} - Cards of a carousel if carousel exists, null otherwise
     */
     getCards(carouselIndex)
     {
@@ -137,7 +165,7 @@ class CardCarousels
         if(firstVisibleCardIndex > 0)
         { 
             cards.forEach((card, i) => {
-                if(card.classList.contains('active') && this.isLastVisibleCard(carouselIndex, i))
+                if(card.classList.contains('active') &amp;&amp; this.isLastVisibleCard(carouselIndex, i))
                 { 
                     card.style.animation = 'slideRightAndFade 0.4s forwards';                        
                     setTimeout(() => { 
@@ -191,7 +219,7 @@ class CardCarousels
         if(!this.isLastPage(carouselIndex))
         {
             cards.forEach((card, i) => {
-                if(i == firstVisibleCardIndex && card.classList.contains('active'))
+                if(i == firstVisibleCardIndex &amp;&amp; card.classList.contains('active'))
                 {
                     card.style.animation = 'slideLeftAndFade 0.4s forwards';
                     setTimeout(() => { 
@@ -266,7 +294,7 @@ class CardCarousels
         });
         
         // Correct the first visible card index if it is out of bounds
-        if((cards.length - (this.firstVisibleCardIndexes[carouselIndex])) < max_nb_active_cards)
+        if((cards.length - (this.firstVisibleCardIndexes[carouselIndex])) &lt; max_nb_active_cards)
         {
             //If there are more cards than the maximum number of active cards
             // Set the first visible card index to display the maximum number of active cards
@@ -282,11 +310,11 @@ class CardCarousels
         }
 
         //Display cards
-        for (let i = this.firstVisibleCardIndexes[carouselIndex]; i < cards.length; i++) 
+        for (let i = this.firstVisibleCardIndexes[carouselIndex]; i &lt; cards.length; i++) 
         {
             let card = cards[i];
 
-            if(nb_active_cards < max_nb_active_cards)
+            if(nb_active_cards &lt; max_nb_active_cards)
             {
                 card.classList.add('active');
                 nb_active_cards++;
@@ -298,4 +326,26 @@ class CardCarousels
 
 
 
-export default CardCarousels;
+export default CardCarousels;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CardCarousels.html">CardCarousels</a></li><li><a href="HamburgerMenu.html">HamburgerMenu</a></li><li><a href="Movie.html">Movie</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getBestMovies">getBestMovies</a></li><li><a href="global.html#getMaxNbActiveCards">getMaxNbActiveCards</a></li><li><a href="global.html#getMovieById">getMovieById</a></li><li><a href="global.html#getMoviesByGenre">getMoviesByGenre</a></li><li><a href="global.html#initMoviesSection">initMoviesSection</a></li><li><a href="global.html#initNetflixLogo">initNetflixLogo</a></li><li><a href="global.html#isImageAvailable">isImageAvailable</a></li><li><a href="global.html#onClickCard">onClickCard</a></li><li><a href="global.html#updatePage">updatePage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 30 2024 14:03:12 GMT+0000 (Greenwich Mean Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
