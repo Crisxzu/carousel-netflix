@@ -1,19 +1,31 @@
 # Carousel Netflix
 
+![desktop](readme-images/showcase_desktop.png)  
+![mobile](readme-images/showcase_mobile.png)
+
 ## Description
+
 The goal of this project is to learn to use [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/docs/) and [Sass](https://sass-lang.com/) to create a clone of Netflix Interface in particular the carousel.
 
 ## Clone the project
+
 You can clone this project by downloading [it](https://github.com/Crisxzu/carousel-netflix/archive/refs/heads/main.zip)
 Or you can use git command `git clone https://github.com/Crisxzu/carousel-netflix.git`
 
 ## Install requirements librairies
+
 `npm install`
 
 ## Build the project
+
 `npm run build`
 
+## Build the docs
+
+``
+
 ## Install the project
+
 Copy dist/ directory at the root of your webserver
 This version is for testing purposes only and you have to use locahost as REST API Provider. You will need to have the REST API running at locahost.
 You can find it at this [link](https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR).
