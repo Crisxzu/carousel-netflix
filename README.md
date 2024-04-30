@@ -22,7 +22,7 @@ Or you can use git command `git clone https://github.com/Crisxzu/carousel-netfli
 
 ## Build the docs
 
-``
+``npm run doc``
 
 ## Install the project
 
