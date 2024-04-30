@@ -22,7 +22,7 @@ My sincere thanks to Christophe for allowing me to use his REST API code.
 
 ## How to add a carousel?
 
-Add the tags to the **index.html** file were you want the carousel to be.
+Add the tags to the **index.html** file in dist/ directory were you want the carousel to be.
 
 ```HTML
 <section class="best-movies">
@@ -30,3 +30,6 @@ Add the tags to the **index.html** file were you want the carousel to be.
 ```
 
 Where _best-movies_ can be replaced by the category you want to show.
+
+## Docs
+You can read the docs of code by opening index.html from out/ directory
