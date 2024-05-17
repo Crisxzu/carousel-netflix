@@ -12,7 +12,7 @@ let breakpointXxxl = window.matchMedia('(min-width: 1600px)');
  */
 function getMaxNbActiveCards()
 {
-    let max_nb_active_cards = 0;
+    let max_nb_active_cards = 0; //Todo: Pas la peine d'initialiser la variable avec une valeur, elle est définie ensuite.
 
     if(breakpointXxxl.matches)
     {

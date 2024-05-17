@@ -1,3 +1,5 @@
+@import "../utils/variables"; //Todo: J'ai ajouté cette ligne qui permet d'importer tes variables
+
 header
 {
     display: flex;        
@@ -92,7 +94,7 @@ header
         {
             display: none;            
             width: 100vw;            
-            margin-left: 0rem;                        
+            margin-left: 0rem; /* TODO: C'est l'unité par défaut, tu peux simplement laisser 0 sans préciser l'unité de mesure */
         }
         
         .navbar ul

@@ -30,7 +30,7 @@ class HamburgerMenu
         {
             this.navbar.style.display = this.navbar.style.display === 'block' ? 'none' : 'block';
 
-            if(this.hamburger.children[0].attributes.getNamedItem('src').value == hamburgerImg)
+            if(this.hamburger.children[0].attributes.getNamedItem('src').value == hamburgerImg) //Todo: Code à expliquer, il existe surement une solution plus simple et qui ne pose pas de problème de typage... :)
             {
                 this.hamburger.children[0].attributes.getNamedItem('src').value = timesImg;
             }
@@ -41,7 +41,7 @@ class HamburgerMenu
            this.hamburgerImgChanged = true;
         }.bind(this));
 
-        let img = new Image();
+        const img = new Image(); //Todo: toujours const
         img.src = hamburgerImg;
         this.hamburger.appendChild(img);
     }
@@ -51,7 +51,7 @@ class HamburgerMenu
      * @method
      * @returns {boolean} - Flag of hamburger's image changed
      */
-    get hamburgerImgChanged()
+    get hamburgerImgChanged()//Todo: Cette fonction semble inutilisée, code mort ? Nommage suspect :)
     {
         return this.hamburgerImgChanged;
     }

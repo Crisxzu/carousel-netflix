@@ -1,3 +1,5 @@
+@import "../utils/variables"; //Todo: J'ai ajouté cette ligne qui permet d'importer tes variables
+
 .movie-dialog
 {
     position: relative;
@@ -23,7 +25,7 @@
         margin-right: 0.2rem;
         padding: 0.5rem;
         cursor: pointer;
-        color: $font-color;
+        color: $font-color; //Todo: Importer les variables comme je l'ai montré précédemment
         font-size: 1rem;
         background-color: $primary-color;
     }

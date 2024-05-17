@@ -64,7 +64,7 @@ class CardCarousels
     */
     isLastVisibleCard(carouselIndex, cardIndex)
     {
-        return cardIndex == this.firstVisibleCardIndexes[carouselIndex] + utils.getMaxNbActiveCards() - 1;
+        return cardIndex == this.firstVisibleCardIndexes[carouselIndex] + utils.getMaxNbActiveCards() - 1; //Todo: Utiliser la triple égalité pour confirmer le type
     }
 
     /** Get cards of a carousel

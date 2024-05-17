@@ -53,12 +53,12 @@ async function initMoviesSection()
         let sectionTitle;
         if(moviesSection.classList.contains('best-movies'))
         {
-            movies = await netflixApi.getBestMovies();            
+            movies = await netflixApi.getBestMovies(); // Todo: Await inutile
             sectionTitle = 'Best Movies';            
         }
         else
         {
-            movies = await netflixApi.getMoviesByGenre(moviesSection.classList[0]);
+            movies = await netflixApi.getMoviesByGenre(moviesSection.classList[0]); //Todo: await inutile
             sectionTitle = moviesSection.classList[0];
         }
         if(movies.length > 0)

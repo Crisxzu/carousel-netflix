@@ -13,7 +13,13 @@ You can clone this project by downloading [it](https://github.com/Crisxzu/carous
 Or you can use git command `git clone https://github.com/Crisxzu/carousel-netflix.git`
 
 ## Install requirements librairies
-
+[//]: # (TODO: Amélioration de l'intégration
+Ca n'est pas obligatoire, ni une faute, mais si tu met :
+```shell bash
+npm install
+```
+, tu précise que ton script est conçu pour bash et non powershell ou cmd par exemple.
+)
 `npm install`
 
 ## Build the project

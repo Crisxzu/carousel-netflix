@@ -66,7 +66,7 @@ async function isImageAvailable(imageUrl)
  * @returns {Array} - Array of movies
  * @see isImageAvailable
  * @see Movie
- * @see {@link https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR APIGit}
+ * @see {@link https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR APIGit} //Todo: Mauvais usage, pas de curly brackets, c'est un link, pas un paramètre de type link (qui n'existe pas)
 */
 async function getMoviesByGenre(genre, limit = 10)
 {   
@@ -83,7 +83,7 @@ async function getMoviesByGenre(genre, limit = 10)
 
             for(let j = 0; j < results.length; j++)
             {
-                let result = results[j];
+                let result = results[j]; // Todo: Utiliser const, car c'est un immutable
                 const movie = new Movie(
                     result["id"],
                     result["imdb_url"], 
@@ -96,7 +96,7 @@ async function getMoviesByGenre(genre, limit = 10)
                     result["writers"],
                     result["actors"],
                     result["genres"]);                
-                let isAvailable = await isImageAvailable(movie.imageUrl);                
+                let isAvailable = await isImageAvailable(movie.imageUrl); // Todo: await inutile, ta fonction ne retourne pas de promesse, tu as un await à l'intérieur : "let response = await fetch(imageUrl);"
                 if(isAvailable)
                 {
                     movies.push(movie);
@@ -128,13 +128,13 @@ async function getMoviesByGenre(genre, limit = 10)
  * @returns {Array} - Array of movies
  * @see isImageAvailable
  * @see Movie
- * @see {@link https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR APIGit}
+ * @see {@link https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR APIGit} //Todo: Mauvais usage, pas de curly brackets, c'est un link, pas un paramètre de type link (qui n'existe pas)
 */
 async function getBestMovies(limit = 10)
 {
     let movies = [];
     let i = 0;
-    let response = await fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score");    
+    let response = await fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score"); //Todo: Utiliser const car c'est un immutable
     while(i < limit)
     {    
         if (response.ok)
@@ -144,7 +144,7 @@ async function getBestMovies(limit = 10)
 
             for(let j = 0; j < results.length; j++)
             {
-                let result = results[j];
+                let result = results[j]; // Todo: Utiliser const, car c'est un immutable
                 const movie = new Movie(
                     result["id"],
                     result["imdb_url"], 
@@ -157,7 +157,7 @@ async function getBestMovies(limit = 10)
                     result["writers"],
                     result["actors"],
                     result["genres"]);
-                let isAvailable = await isImageAvailable(movie.imageUrl);          
+                let isAvailable = await isImageAvailable(movie.imageUrl); // Todo: await inutile, ta fonction ne retourne pas de promesse, tu as un await à l'intérieur : "let response = await fetch(imageUrl);"
                 if(isAvailable)
                 {
                     movies.push(movie);
@@ -190,7 +190,7 @@ async function getBestMovies(limit = 10)
  * @returns {(Movie|null)} - Movie object if movie(with image) is available, null otherwise
  * @see isImageAvailable
  * @see Movie
- * @see {@link https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR APIGit}
+ * @see {@link https://github.com/cGIfl300/OC_P6/tree/master/cloned_api_server/OCMovies-API-EN-FR APIGit} //Todo: Mauvais usage, pas de curly brackets, c'est un link, pas un paramètre de type link (qui n'existe pas)
 */
 async function getMovieById(id)
 {
@@ -210,7 +210,7 @@ async function getMovieById(id)
             json["writers"],
             json["actors"],
             json["genres"]);         
-        let isAvailable = await isImageAvailable(movie.imageUrl);
+        let isAvailable = await isImageAvailable(movie.imageUrl); //Todo: await inutile
         if(isAvailable)
         {
             return movie;
